@@ -1,22 +1,28 @@
 import winston = require("winston");
-import TransportStream = require("winston-transport");
+import Transport = require("winston-transport");
 
-export class ConsoleForElectron extends TransportStream {
-    constructor(options?: TransportStream.TransportStreamOptions) {
+
+const LEVEL = Symbol.for('level');
+interface infoType {
+    message: string,
+    [LEVEL]: string,
+}
+
+export class ConsoleForElectron extends Transport {
+    constructor(options?: Transport.TransportStreamOptions) {
         super(options);
     }
 
-    public log (info: any, callback: Function) {
+    public log (info: infoType, next: () => void): void {
         try {
             // const MESSAGE = Symbol.for('message');
-            const LEVEL = Symbol.for('level');
-            let message = info.message;
-            if (!message) {
+            let message;
+            if (!(message = info.message)) {
                 console.log(info);
                 return;
             }
 
-            let level = info[LEVEL];
+            const level = info[LEVEL];
             switch (level) {
                 case 'debug':
                     console.debug(message);
@@ -35,14 +41,14 @@ export class ConsoleForElectron extends TransportStream {
             }
         }
         finally {
-            if (callback) {
-                callback();
+            if (next) {
+                next();
             }
         }
     }
 }
 
-export function createDefaultLogger (logfile: string) {
+export function createDefaultLogger (logfile: string): winston.Logger {
     return winston.createLogger({
         level: 'info',
         transports: [

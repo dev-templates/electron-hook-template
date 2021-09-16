@@ -1,4 +1,4 @@
-import { app, BrowserWindow, session } from "electron";
+import { app, BrowserWindow } from "electron";
 import * as path from "path";
 import { catchFetches } from "./hook";
 
@@ -23,15 +23,15 @@ function createWindow () {
   const cachePath = '../overrides';
   // ignore urls with regexp
   const ignoreUrls = new Set<RegExp>([
-    /^https:\/\/[^\.]*\.gstatic\.com\//,
-    /^https:\/\/[^\.]*\.google\.com\//,
-    /^https:\/\/[^\.]*\.googletagmanager\.com\//,
-    /^https:\/\/[^\.]*\.google\-analytics\.com\//,
+    /^https:\/\/[^.]*\.gstatic\.com\//,
+    /^https:\/\/[^.]*\.google\.com\//,
+    /^https:\/\/[^.]*\.googletagmanager\.com\//,
+    /^https:\/\/[^.]*\.google-analytics\.com\//,
   ]);
   catchFetches(mainWindow, cachePath, ignoreUrls);
 
   // Open the DevTools.
-  mainWindow.webContents.once('devtools-opened', (e: any, i: any) => {
+  mainWindow.webContents.once('devtools-opened', () => {
     // enable network.cache because we cached already.
     mainWindow.webContents.debugger.sendCommand('Network.setCacheDisabled', { cacheDisabled: false });
   });

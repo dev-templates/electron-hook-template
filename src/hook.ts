@@ -5,7 +5,7 @@ import path = require("path");
 
 const logger = createDefaultLogger('log/fetches.log');
 
-export function catchFetches (win: BrowserWindow, cachePath: string, ignoreUrls: Set<RegExp>) {
+export function catchFetches (win: BrowserWindow, cachePath: string, ignoreUrls: Set<RegExp>): void {
     try {
         win.webContents.debugger.attach('1.3');
     } catch (err) {
@@ -19,18 +19,18 @@ export function catchFetches (win: BrowserWindow, cachePath: string, ignoreUrls:
     win.webContents.debugger.sendCommand('Fetch.enable', { handleAuthRequests: false, patterns: [{ requestStage: 'Response' }] });
     win.webContents.debugger.on('message', (event, method, params) => {
         if (method == 'Fetch.requestPaused') {
-            let requestId = params.requestId;
-            let request = params.request;
-            let frameId = params.frameId;
-            let resourceType = params.resourceType;
-            let uri = new URL(request.url);
+            const requestId = params.requestId;
+            const request = params.request;
+            // let frameId = params.frameId;
+            // let resourceType = params.resourceType;
+            const uri = new URL(request.url);
             if (uri.protocol == 'file:') {
                 // read local file
                 // logger.info(`fetch: ${request.url} (local)`);
                 win.webContents.debugger.sendCommand('Fetch.continueRequest', { requestId: requestId });
                 return;
             }
-            for (let exp of ignoreUrls) {
+            for (const exp of ignoreUrls) {
                 if (exp.test(request.url)) {
                     // in ignore list
                     logger.info(`fetch: ${request.url} (ignore)`);
@@ -44,7 +44,7 @@ export function catchFetches (win: BrowserWindow, cachePath: string, ignoreUrls:
                 logger.info(`fetch: fix dir path ${filePath} => ${filePath}index.html`);
                 filePath += 'index.html';
             }
-            let fileFullPath = path.join(__dirname, `${cachePath}/${filePath}`);
+            const fileFullPath = path.join(__dirname, `${cachePath}/${filePath}`);
             stat(fileFullPath, (e, s) => {
                 if (e) {
                     if (e.code != 'ENOENT') {
@@ -53,7 +53,7 @@ export function catchFetches (win: BrowserWindow, cachePath: string, ignoreUrls:
                     // local file not exists
                     logger.info(`fetch: ${request.url} (expired)`);
                     win.webContents.debugger.sendCommand('Fetch.getResponseBody', { requestId: requestId }).then(response => {
-                        let buf = response.base64Encoded ? Buffer.from(response.body, 'base64') : Buffer.from(response.body);
+                        const buf = response.base64Encoded ? Buffer.from(response.body, 'base64') : Buffer.from(response.body);
                         mkdir(path.dirname(fileFullPath), {recursive: true}, e => {
                             if (e && e.code != 'EEXIST') {
                                 // mkdir failed.
