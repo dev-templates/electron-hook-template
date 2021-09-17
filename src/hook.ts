@@ -1,7 +1,7 @@
 import { BrowserWindow } from "electron";
 import { mkdir, readFile, stat, writeFile } from "original-fs";
 import { createDefaultLogger } from "./logger";
-import path = require("path");
+import * as path from "path";
 
 const logger = createDefaultLogger('log/fetches.log');
 

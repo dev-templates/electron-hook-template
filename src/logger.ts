@@ -1,5 +1,5 @@
-import winston = require("winston");
-import Transport = require("winston-transport");
+import * as winston from "winston";
+import * as Transport from "winston-transport";
 
 
 const LEVEL = Symbol.for('level');
