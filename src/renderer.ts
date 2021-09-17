@@ -4,4 +4,3 @@
 // nodeIntegration is set to true in webPreferences.
 // Use preload.js to selectively enable features
 // needed in the renderer process.
-// import { ipcRenderer, remote, shell } from 'electron';

@@ -8,12 +8,14 @@
     "lint": "eslint -c .eslintrc --ext .ts ./src",
     "start": "npm run build && electron ./dist/main.js"
   },
-  "repository": "https://github.com/electron/electron-quick-start-typescript",
+  "repository": "https://github.com/dev-templates/electron-hook-template",
   "keywords": [
-    "Electron",
+    "electron",
     "hook",
     "template",
-    "typescript"
+    "nodejs",
+    "typescript",
+    "eslint"
   ],
   "author": "leaker",
   "license": "SEE LICENSE IN <LICENSE>",
