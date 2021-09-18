@@ -22,12 +22,12 @@ function createWindow () {
   // start hook
   const cachePath = '../overrides';
   // ignore urls with regexp
-  const ignoreUrls = new Set<RegExp>([
+  const ignoreUrls = [
     /^https:\/\/[^.]*\.gstatic\.com\//,
     /^https:\/\/[^.]*\.google\.com\//,
     /^https:\/\/[^.]*\.googletagmanager\.com\//,
     /^https:\/\/[^.]*\.google-analytics\.com\//,
-  ]);
+  ];
   catchFetches(mainWindow, cachePath, ignoreUrls);
 
   // Open the DevTools.
