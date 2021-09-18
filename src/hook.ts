@@ -30,14 +30,14 @@ export function catchFetches (win: BrowserWindow, cachePath: string, ignoreUrls:
                 win.webContents.debugger.sendCommand('Fetch.continueRequest', { requestId: requestId });
                 return;
             }
-            for (const exp of ignoreUrls) {
+            ignoreUrls.forEach((exp) => {
                 if (exp.test(request.url)) {
                     // in ignore list
                     logger.info(`fetch: ${request.url} (ignore)`);
                     win.webContents.debugger.sendCommand('Fetch.continueRequest', { requestId: requestId });
                     return;
                 }
-            }
+            });
             // logger.info(`requestPaused: ${request.url}`);
             let filePath = `${uri.host}${uri.pathname}`;
             if (filePath[filePath.length - 1] == '/') {
