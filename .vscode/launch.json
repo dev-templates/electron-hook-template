@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Main Process",
+            "name": "Launch",
             "type": "node",
             "request": "launch",
             "cwd": "${workspaceRoot}",
@@ -12,7 +12,7 @@
             },
             "program": "${workspaceRoot}/dist/main.js",
             "protocol": "inspector",
-            "preLaunchTask": "npm: build"
+            "preLaunchTask": "yarn: build"
         },
     ],
 }

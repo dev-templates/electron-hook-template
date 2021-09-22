@@ -2,15 +2,18 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "npm",
-			"script": "build",
+			"type": "shell",
+			"command": "yarn",
+			"args": [
+				"build"
+			],
+			"problemMatcher": [],
 			"group": {
 				"kind": "build",
 				"isDefault": true
 			},
-			"problemMatcher": [],
-			"label": "npm: build",
-			"detail": "tsc"
-		}
+			"label": "yarn: build",
+			"detail": "yarn build"
+		},
 	]
 }
