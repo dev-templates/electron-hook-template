@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "winston": "^3.3.3",
-    "winston-transport": "^4.4.1"
+    "winston-transport": "^4.4.2"
   }
 }
