@@ -27,7 +27,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "winston": "^3.8.0",
+    "winston": "^3.8.1",
     "winston-transport": "^4.5.0"
   }
 }
