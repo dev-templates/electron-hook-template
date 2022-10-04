@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"type": "shell",
-			"command": "yarn",
+			"command": "pnpm",
 			"args": [
 				"build"
 			],
@@ -12,8 +12,8 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"label": "yarn: build",
-			"detail": "yarn build"
+			"label": "pnpm: build",
+			"detail": "pnpm build"
 		},
 	]
 }

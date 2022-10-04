@@ -5,6 +5,8 @@
         "sourceMap": true,
         "outDir": "dist",
         "baseUrl": ".",
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
         "paths": {
             "*": [
                 "node_modules/*"

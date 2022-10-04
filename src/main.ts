@@ -9,7 +9,7 @@ function createWindow () {
     height: 720,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
-      nativeWindowOpen: true,
+      // nativeWindowOpen: true,
       contextIsolation: false,
       nodeIntegration: true,
       webSecurity: false,

@@ -11,8 +11,7 @@
                 "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
             },
             "program": "${workspaceRoot}/dist/main.js",
-            "protocol": "inspector",
-            "preLaunchTask": "yarn: build"
+            "preLaunchTask": "pnpm: build"
         },
     ],
 }
