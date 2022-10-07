@@ -20,7 +20,7 @@
   "author": "leaker",
   "license": "SEE LICENSE IN <LICENSE>",
   "devDependencies": {
-    "@types/node": "^18.8.1",
+    "@types/node": "^18.8.3",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
     "electron": "^21.0.1",
